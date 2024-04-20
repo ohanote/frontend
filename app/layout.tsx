@@ -33,6 +33,7 @@ export default function RootLayout({
             <input
               type="text"
               placeholder="Search"
+              name="search"
               className="bg-slate-900 border-2 border-slate-600 rounded-md p-1 pl-8 focus:outline-none"
             />
           </div>

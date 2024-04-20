@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Overview = () => {
+const Files = () => {
   return (
-    <div>Overview</div>
+    <div>Files</div>
   )
 }
 
-export default Overview
+export default Files

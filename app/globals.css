@@ -4,12 +4,12 @@
 
 @layer base{
   .tableHeaderActive{
-    @apply font-bold
+    @apply font-bold text-emerald-300 border-b-4 border-b-emerald-300
   }
 }
 
 @layer components{
   input[type="text"]::placeholder{
-    @apply text-slate-600 hover:text-slate-400 focus:text-slate-400 transition-all
+    @apply text-slate-600 hover:text-slate-400 focus:text-slate-400 transition-all 
   }
 }

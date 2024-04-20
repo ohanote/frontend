@@ -1,35 +1,39 @@
-import PROJECT_DETAILS_MENU from "@/constants/projectDetailsMenu";
 import React from "react";
-import TableHeaders from "../components/TableHeaders";
-import TasksTable from "../components/TasksTable";
+import { FiPlus } from "react-icons/fi";
 
-const Project = () => {
+const Project = async () => {
+  const response = await fetch("https://todo-app-api-omega.vercel.app/tasks");
+
+  const tasks = await response.json();
+
   return (
-    <div className="flex flex-col h-full">
-      <div className="grid grid-cols-[70%_1fr] border-[0.5px] border-slate-700">
-        <div className="flex flex-col p-3 gap-3">
-          <div className="flex flex-col gap-2">
-            <span className="text-xs">
-              Project/ <span className="font-bold">Project Details</span>
-            </span>
-            <div className="flex items-center gap-3">
-              <h1 className="font-bold text-lg">
-                Food delivery Web/App Design
-              </h1>
-              <span className="text-xs py-1 px-2 rounded-md bg-emerald-900 text-emerald-200">
-                In Progress
-              </span>
-            </div>
-          </div>
-          <div className="grid grid-cols-7 w-full text-sm">
-            {PROJECT_DETAILS_MENU.map((e) => {
-              return <TableHeaders href={e.href} key={e.key} name={e.name} active={false} />;
-            })}
-          </div>
-        </div>
+    <div className="w-full p-2 flex flex-col gap-2">
+      <div className="grid grid-cols-6 w-full pt-2 pb-1 border-b-2 border-slate-600">
+        <p className="col-span-2 border-x-2 border-x-slate-600 px-3">Task name</p>
+        <p className="border-r-2 border-r-slate-600 px-3"> Project</p>
+        <p className="border-r-2 border-r-slate-600 px-3"> Finish Date</p>
+        <p className="border-r-2 border-r-slate-600 px-3"> Start Hour</p>
+        <p className="border-r-2 border-r-slate-600 px-3"> Finish Hour</p>
       </div>
-      <div className="flex bg-slate-950 h-full w-full">
-        <TasksTable />
+      {tasks.map((e: any) => {
+        return (
+          <div
+            key={e.id}
+            className="grid grid-cols-[1fr_repeat(5,_100px)] w-full text-sm py-2 bg-slate-800 hover:bg-slate-700 border-l-8 border-l-lime-400"
+          >
+            <p className=" pl-3">{e.name}</p>
+            <p>{e.category}</p>
+            <p>{e.taskDate}</p>
+            <p>{e.startHour}</p>
+            <p>{e.finishHour}</p>
+          </div>
+        );
+      })}
+      <div className="flex items-center px-3 w-full text-sm py-2 bg-slate-950 hover:bg-slate-900 border-l-8 border-l-lime-400 group cursor-pointer">
+        <div className="bg-sky-400 p-2 rounded-full items-center justify-center">
+          <FiPlus className="text-white cursor-pointer group-hover:scale-125" />
+        </div>
+        <span className="pl-3">Add New Task</span>
       </div>
     </div>
   );

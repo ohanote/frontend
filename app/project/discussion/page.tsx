@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Files = () => {
+const Discussion = () => {
   return (
-    <div>Files</div>
+    <div>Discussion</div>
   )
 }
 
-export default Files
+export default Discussion
